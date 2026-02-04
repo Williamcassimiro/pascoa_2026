@@ -224,27 +224,101 @@
       <h2 class="font-display text-2xl font-semibold" style="color: #5c3d2e;">Etapa 2 — Escolha os Sabores</h2>
      </div>
      <p id="flavor-instruction" class="text-sm mb-6 p-4 rounded-2xl" style="background: #fff8ed; color: #8b6914; border: 1px dashed #d4a574;">📌 Selecione os sabores para seu pedido</p><!-- Categoria Fruta -->
-     <div class="mb-6">
-      <div class="flex items-center gap-2 mb-4"><span class="text-xl">🍓</span>
-       <h3 class="font-semibold" style="color: #e879a9;">CATEGORIA FRUTA</h3>
-      </div>
-      <div class="flex flex-wrap gap-3"><button class="flavor-chip category-fruta px-5 py-3 rounded-2xl font-medium shadow-md" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #be185d; border: 2px solid transparent;" data-flavor="Ninho com Morango" data-category="fruta" onclick="toggleFlavor(this)"> 🍓 Ninho com Morango </button> <button class="flavor-chip category-fruta px-5 py-3 rounded-2xl font-medium shadow-md" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #be185d; border: 2px solid transparent;" data-flavor="Maracujá" data-category="fruta" onclick="toggleFlavor(this)"> 🍋 Maracujá Cremoso </button> <button class="flavor-chip category-fruta px-5 py-3 rounded-2xl font-medium shadow-md" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #be185d; border: 2px solid transparent;" data-flavor="Cereja" data-category="fruta" onclick="toggleFlavor(this)"> 🍒 Cereja </button>
-      </div>
-     </div><!-- Categoria Especial -->
-     <div class="mb-6">
-      <div class="flex items-center gap-2 mb-4"><span class="text-xl">✨</span>
-       <h3 class="font-semibold" style="color: #d97706;">CATEGORIA ESPECIAL</h3>
-      </div>
-      <div class="flex flex-wrap gap-3"><button class="flavor-chip category-especial px-5 py-3 rounded-2xl font-medium shadow-md" style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #b45309; border: 2px solid transparent;" data-flavor="Kinder" data-category="especial" onclick="toggleFlavor(this)"> 🍫 Kinder </button> <button class="flavor-chip category-especial px-5 py-3 rounded-2xl font-medium shadow-md" style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #b45309; border: 2px solid transparent;" data-flavor="Ouro Branco" data-category="especial" onclick="toggleFlavor(this)"> 🍬 Ouro Branco </button> <button class="flavor-chip category-especial px-5 py-3 rounded-2xl font-medium shadow-md" style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #b45309; border: 2px solid transparent;" data-flavor="Oreo" data-category="especial" onclick="toggleFlavor(this)"> 🍪 Oreo </button>
-      </div>
-     </div><!-- Categoria Tradicional -->
-     <div class="mb-6">
-      <div class="flex items-center gap-2 mb-4"><span class="text-xl">🍫</span>
-       <h3 class="font-semibold" style="color: #1e40af;">CATEGORIA TRADICIONAL</h3>
-      </div>
-      <div class="flex flex-wrap gap-3"><button class="flavor-chip category-tradicional px-5 py-3 rounded-2xl font-medium shadow-md" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e40af; border: 2px solid transparent;" data-flavor="Dois Amores" data-category="tradicional" onclick="toggleFlavor(this)"> 🍫 Dois Amores </button> <button class="flavor-chip category-tradicional px-5 py-3 rounded-2xl font-medium shadow-md" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e40af; border: 2px solid transparent;" data-flavor="Brigadeiro" data-category="tradicional" onclick="toggleFlavor(this)"> 🍫 Brigadeiro </button> <button class="flavor-chip category-tradicional px-5 py-3 rounded-2xl font-medium shadow-md" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e40af; border: 2px solid transparent;" data-flavor="Ninho com Nutella" data-category="tradicional" onclick="toggleFlavor(this)"> 🥛🍫 Ninho com Nutella </button>
-      </div>
-     </div><!-- Selected Flavors Display -->
+<!-- Categoria Fruta -->
+<div class="mb-6">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="text-xl">🍓</span>
+    <h3 class="font-semibold" style="color: #e879a9;">CATEGORIA FRUTA</h3>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <button class="flavor-chip category-fruta px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #be185d; border: 2px solid transparent;"
+      data-flavor="Ninho com Morango" data-category="fruta" onclick="toggleFlavor(this)">
+      🍓 Ninho com Morango
+    </button>
+
+    <button class="flavor-chip category-fruta px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #be185d; border: 2px solid transparent;"
+      data-flavor="Maracujá Cremoso" data-category="fruta" onclick="toggleFlavor(this)">
+      🍋 Maracujá Cremoso
+    </button>
+
+    <button class="flavor-chip category-fruta px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #be185d; border: 2px solid transparent;"
+      data-flavor="Cereja" data-category="fruta" onclick="toggleFlavor(this)">
+      🍒 Cereja
+    </button>
+  </div>
+</div>
+
+<!-- Categoria Especial -->
+<div class="mb-6">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="text-xl">✨</span>
+    <h3 class="font-semibold" style="color: #d97706;">CATEGORIA ESPECIAL</h3>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <button class="flavor-chip category-especial px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #b45309; border: 2px solid transparent;"
+      data-flavor="Ouro Branco" data-category="especial" onclick="toggleFlavor(this)">
+      🍬 Ouro Branco
+    </button>
+
+    <button class="flavor-chip category-especial px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #b45309; border: 2px solid transparent;"
+      data-flavor="Caramelo Salgado" data-category="especial" onclick="toggleFlavor(this)">
+      🍯 Caramelo Salgado
+    </button>
+
+    <button class="flavor-chip category-especial px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #b45309; border: 2px solid transparent;"
+      data-flavor="Kinder" data-category="especial" onclick="toggleFlavor(this)">
+      🍫 Kinder
+    </button>
+
+    <button class="flavor-chip category-especial px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #b45309; border: 2px solid transparent;"
+      data-flavor="Oreo" data-category="especial" onclick="toggleFlavor(this)">
+      🍪 Oreo
+    </button>
+  </div>
+</div>
+
+<!-- Categoria Tradicional -->
+<div class="mb-6">
+  <div class="flex items-center gap-2 mb-4">
+    <span class="text-xl">🍫</span>
+    <h3 class="font-semibold" style="color: #1e40af;">CATEGORIA TRADICIONAL</h3>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <button class="flavor-chip category-tradicional px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e40af; border: 2px solid transparent;"
+      data-flavor="Dois Amores" data-category="tradicional" onclick="toggleFlavor(this)">
+      💕 Dois Amores
+    </button>
+
+    <button class="flavor-chip category-tradicional px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e40af; border: 2px solid transparent;"
+      data-flavor="Brigadeiro" data-category="tradicional" onclick="toggleFlavor(this)">
+      🍫 Brigadeiro
+    </button>
+
+    <button class="flavor-chip category-tradicional px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e40af; border: 2px solid transparent;"
+      data-flavor="Ninho com Nutella" data-category="tradicional" onclick="toggleFlavor(this)">
+      🥛🍫 Ninho com Nutella
+    </button>
+
+    <button class="flavor-chip category-tradicional px-5 py-3 rounded-2xl font-medium shadow-md"
+      style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e40af; border: 2px solid transparent;"
+      data-flavor="Prestígio" data-category="tradicional" onclick="toggleFlavor(this)">
+      🥥🍫 Prestígio
+    </button>
+  </div>
+</div><!-- Selected Flavors Display -->
      <div id="selected-flavors" class="hidden p-4 rounded-2xl" style="background: linear-gradient(135deg, #fef7ed, #fdf2e3); border: 2px solid #d4a574;">
       <p class="font-semibold mb-2" style="color: #5c3d2e;">Sabores selecionados:</p>
       <div id="flavor-list" class="flex flex-wrap gap-2"></div>
@@ -257,7 +331,60 @@
       </div>
      </div>
     </section><!-- Order Summary -->
-    <section id="order-summary" class="mb-10 opacity-50 pointer-events-none transition-all duration-500">
+<section class="mb-8">
+  <div class="rounded-3xl p-6"
+    style="background: linear-gradient(135deg, #fef7ed, #fff8ed); border: 2px dashed #d4a574;">
+    
+    <div class="flex items-center gap-3 mb-4">
+      <span class="text-2xl">📦</span>
+      <h2 class="font-display text-xl font-semibold" style="color: #5c3d2e;">
+        Informações Importantes
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+      <div class="flex items-start gap-3">
+        <span class="text-xl">🗓</span>
+        <p style="color: #5c3d2e;">
+          <span class="font-semibold">Pedidos aceitos</span>
+          <span id="deadline-display"> até 29/03</span>
+        </p>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="text-xl">🚚</span>
+        <p style="color: #5c3d2e;">
+          <span class="font-semibold">Entregas</span> iniciam 1 semana antes da Páscoa
+        </p>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="text-xl">⚠️</span>
+        <p style="color: #5c3d2e;">
+          <span class="font-semibold">Produção limitada</span> – sob encomenda
+        </p>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="text-xl">🍫</span>
+        <p style="color: #5c3d2e;">
+          <span class="font-semibold">Composição dos sabores:</span><br>
+          • Cereja e Oreo são produzidos com <strong>chocolate branco</strong><br>
+          • Caramelo Salgado contém <strong>amendoim na casquinha</strong>
+        </p>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="text-xl">ℹ️</span>
+        <p style="color: #5c3d2e;">
+          Para realizar um <strong>novo pedido ou alterações</strong>, solicitamos que o envio seja feito novamente pelo site.
+          Assim, conseguimos garantir um atendimento mais organizado e eficiente.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="order-summary" class="mb-10 opacity-50 pointer-events-none transition-all duration-500">
      <div class="rounded-3xl p-1 gradient-border">
       <div class="rounded-3xl p-6" style="background: #fffcf7;">
        <div class="flex items-center gap-3 mb-4"><span class="text-2xl">📋</span>
@@ -271,24 +398,7 @@
       </div>
      </div>
     </section><!-- Important Info -->
-    <section class="mb-8">
-     <div class="rounded-3xl p-6" style="background: linear-gradient(135deg, #fef7ed, #fff8ed); border: 2px dashed #d4a574;">
-      <div class="flex items-center gap-3 mb-4"><span class="text-2xl">📦</span>
-       <h2 class="font-display text-xl font-semibold" style="color: #5c3d2e;">Informações Importantes</h2>
-      </div>
-      <div class="space-y-3">
-       <div class="flex items-start gap-3"><span class="text-xl">🗓</span>
-        <p style="color: #5c3d2e;"><span class="font-semibold">Pedidos aceitos</span> <span id="deadline-display">até 29/03</span></p>
-       </div>
-       <div class="flex items-start gap-3"><span class="text-xl">🚚</span>
-        <p style="color: #5c3d2e;"><span class="font-semibold">Entregas</span> iniciam 1 semana antes da Páscoa</p>
-       </div>
-       <div class="flex items-start gap-3"><span class="text-xl">⚠️</span>
-        <p style="color: #5c3d2e;"><span class="font-semibold">Produção limitada</span> – sob encomenda</p>
-       </div>
-      </div>
-     </div>
-    </section><!-- Footer -->
+<!-- Footer -->
     <footer class="text-center py-6">
      <p class="text-sm" style="color: #8b6914;">Feito com 💛 para uma Páscoa especial</p>
     </footer>
@@ -711,4 +821,3 @@
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c75d5d5f6ce4f2b',t:'MTc2OTk5NDkwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
