@@ -675,28 +675,7 @@
       // Generate unique order number with shorter format
       const orderNumber = 'PAS' + Date.now().toString().slice(-6);
       
-      /* Build message in the requested format
-      let message = 'OVO DE PASCOA - NOVO PEDIDO' + '%0A%0A';
-      message += 'Cliente: ' + customerName + '%0A';
-      message += 'Cidade: ' + customerCity + '%0A';
-      message += 'Pedido no: ' + orderNumber + '%0A%0A';
-      
-      if (selectedEggType === 'trio') {
-        message += 'Produto: Trio de Mini Ovos' + '%0A';
-        message += 'Peso total: 150g (3 x 50g)' + '%0A';
-      } else {
-        message += 'Produto: Ovo Trufado' + '%0A';
-        message += 'Peso total: ' + selectedSize + '%0A';
-      }
-      
-      message += '%0ASabores:' + '%0A';
-      selectedFlavors.forEach((flavor) => {
-        message += '• ' + flavor + '%0A';
-      });
-      
-      message += '%0AData do pedido: ' + new Date().toLocaleDateString('pt-BR') + '%0A%0A';
-      message += 'Status: Aguardando confirmacao.';*/
-      // Build message in a clear WhatsApp-friendly format
+      /*/ Build message in a clear WhatsApp-friendly format
       let message = 'Olá! 😊 Gostaria de fazer um pedido de Páscoa 🍫🎉\n\n';
       
       message += '🐰 *OVO DE PÁSCOA – NOVO PEDIDO*\n\n';
@@ -719,7 +698,28 @@
       });
       
       message += '\n📅 Data do pedido: ' + new Date().toLocaleDateString('pt-BR') + '\n';
-      message += '⏳ Status: Aguardando confirmação ✅';
+      message += '⏳ Status: Aguardando confirmação ✅';*/
+      let message = 'Olá! \u{1F60A} Gostaria de fazer um pedido de Páscoa \u{1F36B}\u{1F389}\n\n';
+      
+      message += '\u{1F430} *OVO DE PÁSCOA – NOVO PEDIDO*\n\n';
+      
+      message += '\u{1F464} Cliente: ' + customerName + '\n';
+      message += '\u{1F4CD} Cidade: ' + customerCity + '\n';
+      message += '\u{1F9FE} Pedido nº: ' + orderNumber + '\n\n';
+      
+      if (selectedEggType === 'trio') {
+        message += '\u{1F36B} Produto: Trio de Mini Ovos\n';
+        message += '\u{2696}\u{FE0F} Peso total: 150g (3 x 50g)\n';
+      }
+      
+      message += '\n\u{1F36C} *Sabores escolhidos:*\n';
+      selectedFlavors.forEach(flavor => {
+        message += '• ' + flavor + '\n';
+      });
+      
+      message += '\n\u{1F4C5} Data do pedido: ' + new Date().toLocaleDateString('pt-BR') + '\n';
+      message += '\u{23F3} Status: Aguardando confirmação \u{2705}';
+
       
       const encodedMessage = encodeURIComponent(message);
       const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -730,5 +730,6 @@
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c75d5d5f6ce4f2b',t:'MTc2OTk5NDkwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
