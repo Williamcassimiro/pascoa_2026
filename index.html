@@ -697,36 +697,38 @@
       message += '%0AData do pedido: ' + new Date().toLocaleDateString('pt-BR') + '%0A%0A';
       message += 'Status: Aguardando confirmacao.';*/
       // Build message in a clear WhatsApp-friendly format
-      let message = 'Olá! 😊 Gostaria de fazer um pedido de Páscoa 🍫🎉%0A%0A';
+      let message = 'Olá! 😊 Gostaria de fazer um pedido de Páscoa 🍫🎉\n\n';
       
-      message += '🐰 *OVO DE PÁSCOA – NOVO PEDIDO*%0A%0A';
+      message += '🐰 *OVO DE PÁSCOA – NOVO PEDIDO*\n\n';
       
-      message += '👤 Cliente: ' + customerName + '%0A';
-      message += '📍 Cidade: ' + customerCity + '%0A';
-      message += '🧾 Pedido nº: ' + orderNumber + '%0A%0A';
+      message += '👤 Cliente: ' + customerName + '\n';
+      message += '📍 Cidade: ' + customerCity + '\n';
+      message += '🧾 Pedido nº: ' + orderNumber + '\n\n';
       
       if (selectedEggType === 'trio') {
-        message += '🍫 Produto: Trio de Mini Ovos%0A';
-        message += '⚖️ Peso total: 150g (3 x 50g)%0A';
+        message += '🍫 Produto: Trio de Mini Ovos\n';
+        message += '⚖️ Peso total: 150g (3 x 50g)\n';
       } else {
-        message += '🍫 Produto: Ovo Trufado%0A';
-        message += '⚖️ Peso total: ' + selectedSize + '%0A';
+        message += '🍫 Produto: Ovo Trufado\n';
+        message += '⚖️ Peso total: ' + selectedSize + '\n';
       }
       
-      message += '%0A🍬 *Sabores escolhidos:*%0A';
+      message += '\n🍬 *Sabores escolhidos:*\n';
       selectedFlavors.forEach((flavor) => {
-        message += '• ' + flavor + '%0A';
+        message += '• ' + flavor + '\n';
       });
       
-      message += '%0A📅 Data do pedido: ' + new Date().toLocaleDateString('pt-BR') + '%0A';
+      message += '\n📅 Data do pedido: ' + new Date().toLocaleDateString('pt-BR') + '\n';
       message += '⏳ Status: Aguardando confirmação ✅';
-
+      
       const encodedMessage = encodeURIComponent(message);
       const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
       
       window.open(whatsappURL, '_blank');
+
     }
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c75d5d5f6ce4f2b',t:'MTc2OTk5NDkwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
