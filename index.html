@@ -200,7 +200,7 @@
             <span class="text-xl">🍫</span>
             <p style="color: #5c3d2e;"><span class="font-semibold">Composição dos sabores:</span><br>
             • Cereja e Oreo são produzidos com <strong>chocolate branco</strong><br>
-            • Caramelo Salgado contém <strong>amendoim na casquinha</strong></p>
+            • Crocante de Amendoim contém <strong>amendoim na casquinha</strong></p>
           </div>
           <div class="flex items-start gap-3">
             <span class="text-xl">ℹ️</span>
@@ -334,14 +334,19 @@
     function sendToWhatsApp() {
       const name = document.getElementById('customer-name').value;
       const city = document.getElementById('customer-city').value;
-      if(!name || !city || selectedFlavors.length < maxFlavors) return alert("Preencha todos os campos e sabores!");
+      
+      if(!name || !city || selectedFlavors.length < maxFlavors) return alert("Preencha todos os campos e selecione sabores diferentes para continuar ou mesmo sabor!");
+      if (selectedFlavors.length === 0) return alert('Escolha um sabor');
+      if (selectedEggType === 'trio' && selectedFlavors.length !== 3) return alert('Trio precisa de 3 sabores');
+      if (selectedEggType === 'trufado' && !selectedSize) return alert('Escolha o tamanho');
+      if (selectedEggType === 'inteiro' && !selectedSize)return alert('Escolha o tamanho');
 
       const orderNumber = 'PAS' + Date.now().toString().slice(-6);
 
       const orderDate= '*Data do pedido:* ' + new Date().toLocaleDateString('pt-BR') + '\n';
       const statusOrden = '*Status:* Aguardando confirmação.';
 
-      const msg = `Olá! Gostaria de fazer um pedido de Páscoa.\n\n*OVO DE PÁSCOA – NOVO PEDIDO*\n\n*Pedido nº:* ${orderNumber}\n*Cliente:* ${name}\n*Cidade:* ${city}\n*Produto:* ${selectedEggType}\n*Peso:* ${selectedSize || '150g'}\n*Sabores:* ${selectedFlavors.join(' e ')}\n\n${orderDate}${statusOrden}
+      const msg = `Olá! Gostaria de fazer um pedido de Páscoa.\n\n*OVO DE PÁSCOA – NOVO PEDIDO*\n\n*Pedido nº:* ${orderNumber}\n*Cliente:* ${name}\n*Cidade:* ${city}\n*Produto:* ${selectedEggType}\n*Peso:* ${selectedSize}\n*Sabores:* ${selectedFlavors.join(' e ')}\n\n${orderDate}${statusOrden}
       `;
       
 
