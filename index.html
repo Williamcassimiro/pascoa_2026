@@ -209,10 +209,13 @@
           </div>
         </div>
     </section>
-
     <section id="order-summary" class="mb-10 opacity-50 pointer-events-none">
      <div class="rounded-3xl p-1 gradient-border">
       <div class="rounded-3xl p-6 bg-white">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-2xl">📋</span>
+          <h2 class="font-display text-xl font-semibold" style="color: #5c3d2e;">Resumo do Pedido</h2>
+        </div>
        <div id="summary-content" class="space-y-3 mb-6"></div>
        
        <div id="customer-info" class="space-y-4 mb-6">
@@ -247,11 +250,13 @@
       document.getElementById('carousel-track').style.transform = `translateX(-${currentSlide * 100}%)`;
     }
 
-    function selectEggType(type) {
+  function selectEggType(type) {
       selectedEggType = type;
       selectedFlavors = [];
       selectedSize = null;
-      
+          
+      document.querySelectorAll('.flavor-chip').forEach(c => c.classList.remove('selected', 'bg-[#8b5a2b]', 'text-white'));
+
       document.querySelectorAll('.egg-card').forEach(card => {
         card.classList.remove('selected');
         card.querySelector('svg').classList.add('hidden');
@@ -311,23 +316,53 @@
       updateSummary();
     }
 
-    function updateSummary() {
+ function updateSummary() {
       const summaryContent = document.getElementById('summary-content');
-      const orderSummary = document.getElementById('order-summary');
-      
-      let isReady = (selectedEggType === 'trio' && selectedFlavors.length === 3) ||
-                    (selectedEggType === 'trufado' && selectedSize && selectedFlavors.length === 1) ||
-                    (selectedEggType === 'inteiro' && selectedSize && selectedFlavors.length === 2);
+      const summarySection = document.getElementById('order-summary');
+      const customerInfo = document.getElementById('customer-info');
+
+      let isComplete = false;
+      if (selectedEggType === 'trio' && selectedFlavors.length > 0) isComplete = true;
+      else if (selectedEggType === 'trufado' && selectedSize && selectedFlavors.length === 1) isComplete = true;
+      else if (selectedEggType === 'inteiro' && selectedSize && selectedFlavors.length === 2) isComplete = true;
 
       if (selectedEggType) {
-        summaryContent.innerHTML = `
-          <h3 class="font-bold">Resumo:</h3>
-          <p>Ovo: ${selectedEggType === 'inteiro' ? 'Trufado Inteiro (2 cascas)' : selectedEggType}</p>
-          ${selectedSize ? `<p>Peso: ${selectedSize}</p>` : ''}
-          <p>Sabores: ${selectedFlavors.join(', ')}</p>
-        `;
-        orderSummary.classList.remove('opacity-50', 'pointer-events-none');
-        if(isReady) document.getElementById('step2-indicator').classList.add('completed');
+        let summaryHTML = '';
+        if (selectedEggType === 'trio') {
+          summaryHTML = `<div class="flex items-center gap-3 p-3 rounded-xl" style="background: #fef7ed;"><span class="text-2xl">🎁</span><div><p class="font-semibold" style="color: #5c3d2e;">Trio de Mini Ovos de Colher</p><p class="text-sm" style="color: #8b6914;">150g (3 × 50g)</p></div></div>`;
+        } else if (selectedEggType === 'trufado') {
+          summaryHTML = `<div class="flex items-center gap-3 p-3 rounded-xl" style="background: #fef7ed;"><span class="text-2xl">🍫</span><div><p class="font-semibold" style="color: #5c3d2e;">Ovo Trufado Meia Casca</p><p class="text-sm" style="color: #8b6914;">${selectedSize || 'Selecione o tamanho'}</p></div></div>`;
+        } else if (selectedEggType === 'inteiro') {
+          summaryHTML = `<div class="flex items-center gap-3 p-3 rounded-xl" style="background: #fef7ed;"><span class="text-2xl">🥚</span><div><p class="font-semibold" style="color: #5c3d2e;">Ovo Trufado Inteiro Duas Cascas</p><p class="text-sm" style="color: #8b6914;">${selectedSize || 'Selecione o tamanho'}</p></div></div>`;
+        }
+
+        if (selectedFlavors.length > 0) {
+          summaryHTML += `<div class="p-3 rounded-xl" style="background: #fef7ed;"><p class="text-sm font-semibold mb-2" style="color: #5c3d2e;">Sabores:</p><div class="flex flex-wrap gap-2">${selectedFlavors.map(f => `<span class="px-3 py-1 rounded-full text-xs font-medium" style="background: #8b5a2b; color: white;">${f}</span>`).join('')}</div></div>`;
+        }
+
+        const customerName = document.getElementById('customer-name').value.trim();
+        const customerCity = document.getElementById('customer-city').value.trim();
+
+        if (customerName || customerCity) {
+          summaryHTML += `<div class="p-3 rounded-xl" style="background: #fef7ed;"><p class="text-sm font-semibold mb-2" style="color: #5c3d2e;">📍 Informações de Entrega:</p><div class="text-sm space-y-1" style="color: #5c3d2e;"><p><strong>Nome:</strong> ${customerName || '(não preenchido)'}</p><p><strong>Cidade:</strong> ${customerCity || '(não preenchida)'}</p></div></div>`;
+        }
+
+        summaryContent.innerHTML = summaryHTML;
+
+        if (isComplete) {
+          summarySection.classList.remove('opacity-50', 'pointer-events-none');
+          customerInfo.classList.remove('hidden');
+          document.getElementById('step2-indicator').classList.add('completed');
+          document.getElementById('step3-indicator').classList.add('active', 'completed');
+          document.getElementById('step3-indicator').style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
+          document.getElementById('step3-indicator').style.color = 'white';
+        } else {
+          summarySection.classList.add('opacity-50', 'pointer-events-none');
+          customerInfo.classList.add('hidden');
+          document.getElementById('step3-indicator').classList.remove('active', 'completed');
+          document.getElementById('step3-indicator').style.background = '#e8d5c4';
+          document.getElementById('step3-indicator').style.color = '#8b5a2b';
+        }
       }
     }
 
@@ -346,7 +381,7 @@
       const orderDate= '*Data do pedido:* ' + new Date().toLocaleDateString('pt-BR') + '\n';
       const statusOrden = '*Status:* Aguardando confirmação.';
 
-      const msg = `Olá! Gostaria de fazer um pedido de Páscoa.\n\n*OVO DE PÁSCOA – NOVO PEDIDO*\n\n*Pedido nº:* ${orderNumber}\n*Cliente:* ${name}\n*Cidade:* ${city}\n*Produto:* ${selectedEggType}\n*Peso:* ${selectedSize}\n*Sabores:* ${selectedFlavors.join(' e ')}\n\n${orderDate}${statusOrden}
+      const msg = `Olá! Gostaria de fazer um pedido de Páscoa.\n\n*OVO DE PÁSCOA – NOVO PEDIDO*\n\n*Pedido nº:* ${orderNumber}\n*Cliente:* ${name}\n*Cidade:* ${city}\n*Produto:* ${selectedEggType}\n*Peso:* ${selectedSize|| '150g (3 × 50g)'}\n*Sabores:* ${selectedFlavors.join(' e ')}\n\n${orderDate}${statusOrden}
       `;
       
 
