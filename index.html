@@ -398,13 +398,58 @@ function toggleFlavor(chip) {
           ? `<div class="p-3 rounded-xl bg-[#fef7ed]"><p class="text-sm font-semibold mb-2">Sabores:</p><div class="flex flex-wrap gap-2">${selectedFlavors.map(f => `<span class="px-2 py-1 bg-[#8b5a2b] text-white text-[10px] rounded-lg">${f.name}</span>`).join('')}</div></div>` 
           : "";
 
-        summaryContent.innerHTML = `
+       /* summaryContent.innerHTML = `
           <div class="p-3 rounded-xl bg-[#fef7ed]">
             <p class="font-bold text-[#5c3d2e]">${selectedEggType === 'inteiro' ? 'Ovo Trufado Inteiro (2 Cascas)' : selectedEggType.toUpperCase()}</p>
             <p class="text-sm text-[#8b6914]">Tamanho: ${selectedSize || '...'}</p>
           </div>
-          ${flavorsHtml}`;
+          ${flavorsHtml}`; -- aqui
+        */
+          let eggSummaryHTML = '';
 
+          if (selectedEggType === 'trio') {
+            eggSummaryHTML = `
+              <div class="flex items-center gap-3 p-3 rounded-xl" style="background:#fef7ed;">
+                <span class="text-2xl">🎁</span>
+                <div>
+                  <p class="font-semibold text-[#5c3d2e]">Trio de Mini Ovos de Colher</p>
+                  <p class="text-sm text-[#8b6914]">150g (3 × 50g)</p>
+                </div>
+              </div>
+            `;
+          }
+
+          if (selectedEggType === 'trufado') {
+            eggSummaryHTML = `
+              <div class="flex items-center gap-3 p-3 rounded-xl" style="background:#fef7ed;">
+                <span class="text-2xl">🍫</span>
+                <div>
+                  <p class="font-semibold text-[#5c3d2e]">Ovo Trufado Meia Casca</p>
+                  <p class="text-sm text-[#8b6914]">${selectedSize || 'Selecione o tamanho'}</p>
+                </div>
+              </div>
+            `;
+          }
+
+          if (selectedEggType === 'inteiro') {
+            eggSummaryHTML = `
+              <div class="flex items-center gap-3 p-3 rounded-xl" style="background:#fef7ed;">
+                <span class="text-2xl">🥚</span>
+                <div>
+                  <p class="font-semibold text-[#5c3d2e]">Ovo Trufado Inteiro Duas Cascas</p>
+                  <p class="text-sm text-[#8b6914]">${selectedSize || 'Selecione o tamanho'}</p>
+                </div>
+              </div>
+            `;
+          }
+
+          summaryContent.innerHTML = `
+            ${eggSummaryHTML}
+            ${flavorsHtml}
+          `;
+       
+
+        
         if (currentPrice > 0) { 
           priceBadge.innerHTML = `R$ ${currentPrice.toFixed(2)}`; 
           priceBadge.classList.remove('hidden'); 
