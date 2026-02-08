@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cardápio de Páscoa</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/_sdk/element_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Nunito:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     body { box-sizing: border-box; }
@@ -19,16 +18,47 @@
     .egg-card:hover { transform: translateY(-8px) scale(1.02); }
     .egg-card.selected { transform: scale(1.03); }
     .flavor-chip { transition: all 0.3s ease; }
-    .flavor-chip:hover { transform: scale(1.05); }
-    .flavor-chip.selected { transform: scale(1.08); }
     .gradient-border { background: linear-gradient(135deg, #d4a574, #8b5a2b, #d4a574); background-size: 200% 200%; animation: gradient-shift 3s ease infinite; }
     @keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
     .step-indicator { transition: all 0.5s ease; }
-    .step-indicator.active { transform: scale(1.1); }
     .step-indicator.completed { background: linear-gradient(135deg, #4ade80, #22c55e) !important; color: white !important; }
+    .price-badge {
+      background: linear-gradient(135deg, #8b5a2b, #5c3d2e);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 0.875rem;
+      box-shadow: 0 4px 10px rgba(139, 90, 43, 0.2);
+    }
+        /* BOTÃO FLUTUANTE DE DÚVIDA */
+    .btn-duvida {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffffff;
+      color: #5c3d2e;
+      border: 2px solid #d4a574;
+      padding: 10px 18px;
+      border-radius: 50px;
+      display: flex;
+      items: center;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    .btn-duvida:hover { transform: scale(1.05); background: #fef7ed; }
   </style>
  </head>
  <body class="h-full font-body overflow-auto" style="margin: 0;">
+
+    
+  <button onclick="duvidaWhatsApp()" class="btn-duvida">
+    <span>🤔 Dúvidas?</span>
+  </button>
   <div id="app-wrapper" class="min-h-full w-full" style="background: linear-gradient(180deg, #fef7ed 0%, #fdf2e3 50%, #fcead4 100%);">
    
    <div class="fixed inset-0 pointer-events-none overflow-hidden">
@@ -41,9 +71,7 @@
    <div class="relative max-w-4xl mx-auto px-4 py-8">
     
     <header class="text-center mb-10">
-     <div class="inline-block mb-4">
-      <div class="text-6xl float-animation">🥚</div>
-     </div>
+     <div class="inline-block mb-4"><div class="text-6xl float-animation">🥚</div></div>
      <h1 id="page-title" class="font-display text-4xl md:text-5xl font-bold mb-3" style="color: #5c3d2e;">Páscoa 2026</h1>
      <p class="text-lg" style="color: #8b6914;">Ovos artesanais feitos com amor</p>
      
@@ -57,54 +85,47 @@
     </header>
 
     <section id="carousel-section" class="mb-10">
-     <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="height: 400px; background: linear-gradient(135deg, #d4a574, #8b5a2b);">
-      <div class="relative w-full h-full flex items-center justify-center">
-       <div id="carousel-track" class="flex transition-transform duration-500 ease-out w-full h-full">
-        <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
-         <img src="https://www.mifascinodoceria.com.br/wp-content/uploads/2024/03/MG_3788-scaled.jpg" class="w-full h-full object-cover">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="height: 400px; background: linear-gradient(135deg, #d4a574, #8b5a2b);">
+          <div class="relative w-full h-full flex items-center justify-center">
+          <div id="carousel-track" class="flex transition-transform duration-500 ease-out w-full h-full">
+            <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
+            <img src="https://www.mifascinodoceria.com.br/wp-content/uploads/2024/03/MG_3788-scaled.jpg" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
+            <img src="https://chocolatesbomsabor.com.br/wp-content/uploads/2022/02/IMG_4192.png" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
+            <img src="https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2025/03/29/1095338354-ovo-trufado-de-maracuja.jpg" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <button onclick="moveCarousel(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full text-white z-10" style="background: rgba(139, 90, 43, 0.7);">❮</button>
+          <button onclick="moveCarousel(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full text-white z-10" style="background: rgba(139, 90, 43, 0.7);">❯</button>
+          </div>
         </div>
-        <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
-         <img src="https://chocolatesbomsabor.com.br/wp-content/uploads/2022/02/IMG_4192.png" class="w-full h-full object-cover">
-        </div>
-        <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
-         <img src="https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2025/03/29/1095338354-ovo-trufado-de-maracuja.jpg" class="w-full h-full object-cover">
-        </div>
-       </div>
-       <button onclick="moveCarousel(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full text-white z-10" style="background: rgba(139, 90, 43, 0.7);">❮</button>
-       <button onclick="moveCarousel(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full text-white z-10" style="background: rgba(139, 90, 43, 0.7);">❯</button>
-      </div>
-     </div>
-    </section>
+     </section>
 
     <section id="step1" class="mb-10">
-     <div class="flex items-center gap-3 mb-6"><span class="text-2xl">🥚</span>
-      <h2 class="font-display text-2xl font-semibold" style="color: #5c3d2e;">Etapa 1 — Escolha o Tipo de Ovo</h2>
-     </div>
+     <div class="flex items-center gap-3 mb-6"><span class="text-2xl">🥚</span><h2 class="font-display text-2xl font-semibold" style="color: #5c3d2e;">Etapa 1 — Escolha o Tipo de Ovo</h2></div>
      <div class="grid md:grid-cols-3 gap-6">
-      
       <div class="egg-card cursor-pointer rounded-3xl p-1 gradient-border" data-egg-type="trio" onclick="selectEggType('trio')">
        <div class="rounded-3xl p-6 h-full" style="background: #fffcf7;">
         <div class="flex items-start justify-between mb-4">
          <div class="text-4xl">🎁</div>
-         <div id="trio-check" class="w-7 h-7 rounded-full border-2 flex items-center justify-center" style="border-color: #d4a574;">
-          <svg class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24" style="color: #fff;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-         </div>
+         <div id="trio-check" class="w-7 h-7 rounded-full border-2 flex items-center justify-center" style="border-color: #d4a574;"><svg class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24" style="color: #8b5a2b;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
         </div>
         <h3 class="font-display text-lg font-semibold mb-2" style="color: #5c3d2e;">Trio Mini Ovos</h3>
         <p class="text-sm mb-3" style="color: #8b6914;">150g no total (3 unidades de 50g)</p>
+        <p class="text-sm mb-3" style="color: #8b6914;">R$ 45.00</p>
        </div>
       </div>
-
       <div class="egg-card cursor-pointer rounded-3xl p-1 gradient-border" data-egg-type="trufado" onclick="selectEggType('trufado')">
        <div class="rounded-3xl p-6 h-full" style="background: #fffcf7;">
         <div class="flex items-start justify-between mb-4">
          <div class="text-4xl">🍫</div>
-         <div id="trufado-check" class="w-7 h-7 rounded-full border-2 flex items-center justify-center" style="border-color: #d4a574;">
-          <svg class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24" style="color: #fff;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-         </div>
+         <div id="trufado-check" class="w-7 h-7 rounded-full border-2 flex items-center justify-center" style="border-color: #d4a574;"><svg class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24" style="color: #8b5a2b;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
         </div>
         <h3 class="font-display text-lg font-semibold mb-2" style="color: #5c3d2e;">Ovo Trufado Meia Casca</h3>
-        <p class="text-sm mb-3" style="color: #8b6914;">Recheio cremoso e casca crocante</p>
+        <p class="text-sm mb-3" style="color: #8b6914;">Selecione a opção para ver os valores</p>
         <div id="size-options-meia" class="hidden space-y-2 mt-2">
          <p class="text-xs font-semibold mb-2" style="color: #8b5a2b;">Escolha o tamanho:</p>
          <label class="flex items-center gap-2 text-sm"><input type="radio" name="size" value="250g"> 250g</label>
@@ -112,71 +133,63 @@
         </div>
        </div>
       </div>
-
       <div class="egg-card cursor-pointer rounded-3xl p-1 gradient-border" data-egg-type="inteiro" onclick="selectEggType('inteiro')">
        <div class="rounded-3xl p-6 h-full" style="background: #fffcf7;">
         <div class="flex items-start justify-between mb-4">
          <div class="text-4xl">✨</div>
-         <div id="inteiro-check" class="w-7 h-7 rounded-full border-2 flex items-center justify-center" style="border-color: #d4a574;">
-          <svg class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24" style="color: #fff;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-         </div>
+         <div id="inteiro-check" class="w-7 h-7 rounded-full border-2 flex items-center justify-center" style="border-color: #d4a574;"><svg class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24" style="color: #8b5a2b;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
         </div>
         <h3 class="font-display text-lg font-semibold mb-2" style="color: #5c3d2e;">Ovo Trufado Inteiro</h3>
-        <p class="text-sm mb-3" style="color: #8b6914;">(Duas Cascas Recheadas)</p>
+        <p class="text-sm mb-3" style="color: #8b6914;">Selecione a opção para ver os valores</p>
         <div id="size-options-inteiro" class="hidden space-y-2 mt-2">
          <p class="text-xs font-semibold mb-2" style="color: #8b5a2b;">Escolha o tamanho:</p>
-         <label class="flex items-center gap-2 text-sm"><input type="radio" name="size" value="250g + 250g (500g)"> 500g</label>
-         <label class="flex items-center gap-2 text-sm"><input type="radio" name="size" value="350g + 350g (700g)"> 700g</label>
+         <label class="flex items-center gap-2 text-sm"><input type="radio" name="size" value="250g + 250g (500g)"> 500g (Duas Cascas)</label>
+         <label class="flex items-center gap-2 text-sm"><input type="radio" name="size" value="350g + 350g (700g)"> 700g (Duas Cascas)</label>
         </div>
        </div>
       </div>
-
      </div>
     </section>
+
+    <div id="price-table" class="mb-10 hidden overflow-hidden rounded-2xl border border-[#d4a574]/30 bg-white/50 shadow-sm">
+        <table class="w-full text-left text-sm">
+            <thead class="bg-[#fef7ed] text-[#5c3d2e]"><tr><th class="p-3 font-semibold">Tamanho (Individual)</th><th class="p-3 font-semibold">Tradicional</th><th class="p-3 font-semibold">Fruta</th><th class="p-3 font-semibold">Especial</th></tr></thead>
+            <tbody id="price-rows" class="divide-y divide-[#d4a574]/10 text-[#8b6914]"></tbody>
+        </table>
+    </div>
 
     <section id="step2" class="mb-10 opacity-50 pointer-events-none transition-all duration-500">
-     <div class="flex items-center gap-3 mb-6"><span class="text-2xl">🧩</span>
-      <h2 class="font-display text-2xl font-semibold" style="color: #5c3d2e;">Etapa 2 — Escolha os Sabores</h2>
-     </div>
+     <div class="flex items-center gap-3 mb-6"><span class="text-2xl">🧩</span><h2 class="font-display text-2xl font-semibold" style="color: #5c3d2e;">Etapa 2 — Escolha os Sabores</h2></div>
      <p id="flavor-instruction" class="text-sm mb-6 p-4 rounded-2xl" style="background: #fff8ed; color: #8b6914; border: 1px dashed #d4a574;">📌 Selecione os sabores</p>
-     
      <div class="space-y-6">
-       <div>
-        <div class="mb-6">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="text-xl">🍓</span>
-            <h3 class="font-semibold" style="color: #e879a9;">CATEGORIA FRUTA</h3>
-          </div>
+        <div>
+          <div class="flex items-center gap-2 mb-4"><span class="text-xl">🍓</span><h3 class="font-semibold" style="color: #e879a9;">CATEGORIA FRUTA</h3></div>
           <div class="flex flex-wrap gap-2">
-            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ninho com Morango" onclick="toggleFlavor(this)">🍓 Ninho com Morango</button>
-            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Maracujá Cremoso" onclick="toggleFlavor(this)">🍋 Maracujá Cremoso</button>
-            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Cereja" onclick="toggleFlavor(this)">🍒 Cereja</button>
-        </div>
-       </div>
-       <div class="mb-6"></div>
-          <div class="flex items-center gap-2 mb-4">
-            <span class="text-xl">✨</span>
-            <h3 class="font-semibold" style="color: #d97706;">CATEGORIA ESPECIAL</h3>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ninho com Morango" data-category="fruta" onclick="toggleFlavor(this)">🍓 Ninho com Morango</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Maracujá Cremoso" data-category="fruta" onclick="toggleFlavor(this)">🍋 Maracujá Cremoso</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Cereja" data-category="fruta" onclick="toggleFlavor(this)">🍒 Cereja</button>
           </div>
-         <div class="flex flex-wrap gap-2">
-           <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ouro Branco" onclick="toggleFlavor(this)">🍬 Ouro Branco</button>
-           <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Kinder" onclick="toggleFlavor(this)">🍫 Kinder</button>
-           <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Oreo" onclick="toggleFlavor(this)">🍪 Oreo</button>
-           <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Crocante de Amendoim" onclick="toggleFlavor(this)">🍯 Crocante de Amendoim </button>
-         </div>
-       </div>
-       <div class="mb-6">
-         <h3 class="font-semibold mb-3 text-[#1e40af]">🍫 CATEGORIA TRADICIONAL</h3>
-         <div class="flex flex-wrap gap-2">
-           <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Brigadeiro" onclick="toggleFlavor(this)">🍫 Brigadeiro</button>
-           <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ninho com Nutella" onclick="toggleFlavor(this)">🥛🍫 Ninho com Nutella</button>
-           <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Prestígio" onclick="toggleFlavor(this)">🥥🍫 Prestígio</button>
-           <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Dois Amores" onclick="toggleFlavor(this)">💕 Dois Amores</button>
-         </div>
-       </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 mb-4"><span class="text-xl">✨</span><h3 class="font-semibold" style="color: #d97706;">CATEGORIA ESPECIAL</h3></div>
+          <div class="flex flex-wrap gap-2">
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ouro Branco" data-category="especial" onclick="toggleFlavor(this)">🍬 Ouro Branco</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Kinder" data-category="especial" onclick="toggleFlavor(this)">🍫 Kinder</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Oreo" data-category="especial" onclick="toggleFlavor(this)">🍪 Oreo</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Crocante de Amendoim" data-category="especial" onclick="toggleFlavor(this)">🍯 Crocante de Amendoim </button>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-3 text-[#1e40af]">🍫 CATEGORIA TRADICIONAL</h3>
+          <div class="flex flex-wrap gap-2">
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Brigadeiro" data-category="tradicional" onclick="toggleFlavor(this)">🍫 Brigadeiro</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ninho com Nutella" data-category="tradicional" onclick="toggleFlavor(this)">🥛🍫 Ninho com Nutella</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Prestígio" data-category="tradicional" onclick="toggleFlavor(this)">🥥🍫 Prestígio</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Dois Amores" data-category="tradicional" onclick="toggleFlavor(this)">💕 Dois Amores</button>
+          </div>
+        </div>
      </div>
     </section>
-
     <section class="mb-8">
         <div class="rounded-3xl p-6" style="background: linear-gradient(135deg, #fef7ed, #fff8ed); border: 2px dashed #d4a574;">
           <div class="flex items-center gap-3 mb-4">
@@ -209,84 +222,110 @@
           </div>
         </div>
     </section>
+
+
     <section id="order-summary" class="mb-10 opacity-50 pointer-events-none">
      <div class="rounded-3xl p-1 gradient-border">
       <div class="rounded-3xl p-6 bg-white">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="text-2xl">📋</span>
-          <h2 class="font-display text-xl font-semibold" style="color: #5c3d2e;">Resumo do Pedido</h2>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3"><span class="text-2xl">📋</span><h2 class="font-display text-xl font-semibold" style="color: #5c3d2e;">Resumo do Pedido</h2></div>
+          <div id="total-price-display" class="price-badge hidden">R$ 0,00</div>
         </div>
        <div id="summary-content" class="space-y-3 mb-6"></div>
-       
        <div id="customer-info" class="space-y-4 mb-6">
         <input type="text" id="customer-name" placeholder="Seu Nome *" class="w-full p-3 rounded-xl border border-[#d4a574]">
         <input type="text" id="customer-city" placeholder="Sua Cidade *" class="w-full p-3 rounded-xl border border-[#d4a574]">
        </div>
+       <button onclick="sendToWhatsApp()" class="w-full py-4 rounded-2xl font-bold text-white shadow-xl flex items-center justify-center gap-3" style="background: linear-gradient(135deg, #25d366, #128c7e);">Enviar Pedido pelo WhatsApp</button>
 
-       <button onclick="sendToWhatsApp()" class="w-full py-4 rounded-2xl font-bold text-white shadow-xl flex items-center justify-center gap-3" style="background: linear-gradient(135deg, #25d366, #128c7e);">
-        Enviar Pedido pelo WhatsApp
-       </button>
+      
       </div>
      </div>
     </section>
-
-
-    <footer class="text-center py-6">
-     <p class="text-sm" style="color: #8b6914;">Feito com 💛 para uma Páscoa especial</p>
-    </footer>
+    <p class="text-center mt-4 text-xs text-gray-500">
+         Ficou com alguma dúvida? 
+         <a href="javascript:void(0)" onclick="duvidaWhatsApp()" class="text-amber-700 font-bold underline">Fale conosco</a>
+    </p>
+    <footer class="text-center py-6"><p class="text-sm" style="color: #8b6914;">Feito com ❤️ para uma Páscoa especial</p></footer>
    </div>
   </div>
 
   <script>
+    const TABELA_PRECOS = {
+        trio: { "150g": { fixo: 45.00 } },
+        trufado: {
+            "250g": { tradicional: 55.00, fruta: 65.00, especial: 75.00 },
+            "350g": { tradicional: 85.00, fruta: 95.00, especial: 105.00 }
+        },
+        inteiro: {
+            "250g + 250g (500g)": { tradicional: 110.00, fruta: 125.00, especial: 140.00 },
+            "350g + 350g (700g)": { tradicional: 150.00, fruta: 165.00, especial: 180.00 }
+        }
+    };
+
     let selectedEggType = null;
     let selectedSize = null;
     let selectedFlavors = [];
     let maxFlavors = 1;
-    let currentSlide = 0;
+
+        // --- FUNÇÃO PARA DÚVIDAS ---
+    function duvidaWhatsApp() {
+      const msg = encodeURIComponent("Olá! Estou no site e tenho uma dúvida sobre os ovos de Páscoa.");
+      window.open(`https://wa.me/554599900411?text=${msg}`);
+    }
 
     function moveCarousel(direction) {
       const slides = document.querySelectorAll('.carousel-slide').length;
-      currentSlide = (currentSlide + direction + slides) % slides;
-      document.getElementById('carousel-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+      let track = document.getElementById('carousel-track');
+      let current = parseInt(track.dataset.current || 0);
+      current = (current + direction + slides) % slides;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      track.dataset.current = current;
     }
 
-  function selectEggType(type) {
+    function selectEggType(type) {
       selectedEggType = type;
       selectedFlavors = [];
       selectedSize = null;
-          
-      document.querySelectorAll('.flavor-chip').forEach(c => c.classList.remove('selected', 'bg-[#8b5a2b]', 'text-white'));
-
       document.querySelectorAll('.egg-card').forEach(card => {
         card.classList.remove('selected');
         card.querySelector('svg').classList.add('hidden');
         card.querySelector('[id$="-check"]').style.background = 'transparent';
       });
-
       const selectedCard = document.querySelector(`[data-egg-type="${type}"]`);
       selectedCard.classList.add('selected');
       selectedCard.querySelector('svg').classList.remove('hidden');
       selectedCard.querySelector('[id$="-check"]').style.background = '#d4a574';
-
       document.getElementById('size-options-meia').classList.add('hidden');
       document.getElementById('size-options-inteiro').classList.add('hidden');
+      /*document.querySelectorAll('input[name="size"]').forEach(r => r.checked = false);*/
+      document.querySelectorAll('.flavor-chip').forEach(c => c.classList.remove('selected', 'bg-[#8b5a2b]', 'text-white'));
 
       if (type === 'trio') {
         maxFlavors = 3;
+        selectedSize = "150g";
         document.getElementById('flavor-instruction').innerHTML = '📌 Escolha <strong>exatamente 3 sabores</strong>';
-      } else if (type === 'trufado') {
-        maxFlavors = 1;
-        document.getElementById('size-options-meia').classList.remove('hidden');
-        document.getElementById('flavor-instruction').innerHTML = '📌 Escolha <strong>1 sabor</strong>';
+        document.getElementById('price-table').classList.add('hidden');
       } else {
-        maxFlavors = 2;
-        document.getElementById('size-options-inteiro').classList.remove('hidden');
-        document.getElementById('flavor-instruction').innerHTML = '📌 Escolha <strong>2 sabores diferentes</strong>';
+        const targetDiv = type === 'trufado' ? 'size-options-meia' : 'size-options-inteiro';
+        document.getElementById(targetDiv).classList.remove('hidden');
+        maxFlavors = type === 'trufado' ? 1 : 2;
+        document.getElementById('flavor-instruction').innerHTML = `📌 Escolha <strong>${maxFlavors} sabor(es)</strong>`;
+        renderPriceTable(type);
       }
-
       document.getElementById('step2').classList.remove('opacity-50', 'pointer-events-none');
       document.getElementById('step1-indicator').classList.add('completed');
       updateSummary();
+    }
+
+    function renderPriceTable(type) {
+        const table = document.getElementById('price-table');
+        const rows = document.getElementById('price-rows');
+        table.classList.remove('hidden');
+        rows.innerHTML = "";
+        Object.entries(TABELA_PRECOS[type]).forEach(([size, values]) => {
+            rows.innerHTML += `<tr><td class="p-3 font-bold">${size}</td><td class="p-3">R$ ${values.tradicional.toFixed(2)}</td><td class="p-3">R$ ${values.fruta.toFixed(2)}</td><td class="p-3">R$ ${values.especial.toFixed(2)}</td></tr>`;
+        });
     }
 
     document.querySelectorAll('input[name="size"]').forEach(radio => {
@@ -296,75 +335,102 @@
       });
     });
 
-    function toggleFlavor(chip) {
+function toggleFlavor(chip) {
       const flavor = chip.dataset.flavor;
-      const idx = selectedFlavors.indexOf(flavor);
-
+      const category = chip.dataset.category;
+      const idx = selectedFlavors.findIndex(f => f.name === flavor);
+      
       if (maxFlavors === 1) {
-        selectedFlavors = [flavor];
+        // Lógica para Ovo Trufado Meia Casca (1 sabor)
+        selectedFlavors = [{ name: flavor, category: category }];
         document.querySelectorAll('.flavor-chip').forEach(c => c.classList.remove('selected', 'bg-[#8b5a2b]', 'text-white'));
         chip.classList.add('selected', 'bg-[#8b5a2b]', 'text-white');
       } else {
+        // Lógica para Ovo Inteiro (2 sabores) ou Trio (3 sabores)
         if (idx > -1) {
+          // Se já estava selecionado, desmarca
           selectedFlavors.splice(idx, 1);
           chip.classList.remove('selected', 'bg-[#8b5a2b]', 'text-white');
-        } else if (selectedFlavors.length < maxFlavors) {
-          selectedFlavors.push(flavor);
+        } else {
+          // Se atingiu o limite, remove o primeiro para dar lugar ao novo (Troca inteligente)
+          if (selectedFlavors.length >= maxFlavors) {
+            const removido = selectedFlavors.shift(); // Remove o primeiro do array
+            // Remove o visual do botão que foi retirado
+            document.querySelectorAll('.flavor-chip').forEach(c => {
+              if (c.dataset.flavor === removido.name) {
+                c.classList.remove('selected', 'bg-[#8b5a2b]', 'text-white');
+              }
+            });
+          }
+          
+          // Adiciona o novo sabor
+          selectedFlavors.push({ name: flavor, category: category });
           chip.classList.add('selected', 'bg-[#8b5a2b]', 'text-white');
         }
       }
       updateSummary();
     }
 
- function updateSummary() {
-      const summaryContent = document.getElementById('summary-content');
-      const summarySection = document.getElementById('order-summary');
-      const customerInfo = document.getElementById('customer-info');
+    function calculatePrice() {
+        if (!selectedEggType || !selectedSize || selectedFlavors.length === 0) return 0;
+        if (selectedEggType === 'trio') return TABELA_PRECOS.trio["150g"].fixo;
 
-      let isComplete = false;
-      if (selectedEggType === 'trio' && selectedFlavors.length > 0) isComplete = true;
-      else if (selectedEggType === 'trufado' && selectedSize && selectedFlavors.length === 1) isComplete = true;
-      else if (selectedEggType === 'inteiro' && selectedSize && selectedFlavors.length === 2) isComplete = true;
+        let dominantCategory = "tradicional";
+        selectedFlavors.forEach(f => {
+            if (f.category === "especial") dominantCategory = "especial";
+            else if (f.category === "fruta" && dominantCategory !== "especial") dominantCategory = "fruta";
+        });
+
+        return TABELA_PRECOS[selectedEggType][selectedSize][dominantCategory];
+    }
+
+    function updateSummary() {
+      const summaryContent = document.getElementById('summary-content');
+      const priceBadge = document.getElementById('total-price-display');
+      const currentPrice = calculatePrice();
+      
+      let isComplete = (selectedEggType === 'trio' && selectedFlavors.length === 3) || 
+                       (selectedEggType === 'trufado' && selectedSize && selectedFlavors.length === 1) || 
+                       (selectedEggType === 'inteiro' && selectedSize && selectedFlavors.length === 2);
 
       if (selectedEggType) {
-        let summaryHTML = '';
-        if (selectedEggType === 'trio') {
-          summaryHTML = `<div class="flex items-center gap-3 p-3 rounded-xl" style="background: #fef7ed;"><span class="text-2xl">🎁</span><div><p class="font-semibold" style="color: #5c3d2e;">Trio de Mini Ovos de Colher</p><p class="text-sm" style="color: #8b6914;">150g (3 × 50g)</p></div></div>`;
-        } else if (selectedEggType === 'trufado') {
-          summaryHTML = `<div class="flex items-center gap-3 p-3 rounded-xl" style="background: #fef7ed;"><span class="text-2xl">🍫</span><div><p class="font-semibold" style="color: #5c3d2e;">Ovo Trufado Meia Casca</p><p class="text-sm" style="color: #8b6914;">${selectedSize || 'Selecione o tamanho'}</p></div></div>`;
-        } else if (selectedEggType === 'inteiro') {
-          summaryHTML = `<div class="flex items-center gap-3 p-3 rounded-xl" style="background: #fef7ed;"><span class="text-2xl">🥚</span><div><p class="font-semibold" style="color: #5c3d2e;">Ovo Trufado Inteiro Duas Cascas</p><p class="text-sm" style="color: #8b6914;">${selectedSize || 'Selecione o tamanho'}</p></div></div>`;
+        let flavorsHtml = selectedFlavors.length > 0 
+          ? `<div class="p-3 rounded-xl bg-[#fef7ed]"><p class="text-sm font-semibold mb-2">Sabores:</p><div class="flex flex-wrap gap-2">${selectedFlavors.map(f => `<span class="px-2 py-1 bg-[#8b5a2b] text-white text-[10px] rounded-lg">${f.name}</span>`).join('')}</div></div>` 
+          : "";
+
+        summaryContent.innerHTML = `
+          <div class="p-3 rounded-xl bg-[#fef7ed]">
+            <p class="font-bold text-[#5c3d2e]">${selectedEggType === 'inteiro' ? 'Ovo Trufado Inteiro (2 Cascas)' : selectedEggType.toUpperCase()}</p>
+            <p class="text-sm text-[#8b6914]">Tamanho: ${selectedSize || '...'}</p>
+          </div>
+          ${flavorsHtml}`;
+
+        if (currentPrice > 0) { 
+          priceBadge.innerHTML = `R$ ${currentPrice.toFixed(2)}`; 
+          priceBadge.classList.remove('hidden'); 
+        } else { 
+          priceBadge.classList.add('hidden'); 
         }
 
-        if (selectedFlavors.length > 0) {
-          summaryHTML += `<div class="p-3 rounded-xl" style="background: #fef7ed;"><p class="text-sm font-semibold mb-2" style="color: #5c3d2e;">Sabores:</p><div class="flex flex-wrap gap-2">${selectedFlavors.map(f => `<span class="px-3 py-1 rounded-full text-xs font-medium" style="background: #8b5a2b; color: white;">${f}</span>`).join('')}</div></div>`;
-        }
-
-        const customerName = document.getElementById('customer-name').value.trim();
-        const customerCity = document.getElementById('customer-city').value.trim();
-
-        if (customerName || customerCity) {
-          summaryHTML += `<div class="p-3 rounded-xl" style="background: #fef7ed;"><p class="text-sm font-semibold mb-2" style="color: #5c3d2e;">📍 Informações de Entrega:</p><div class="text-sm space-y-1" style="color: #5c3d2e;"><p><strong>Nome:</strong> ${customerName || '(não preenchido)'}</p><p><strong>Cidade:</strong> ${customerCity || '(não preenchida)'}</p></div></div>`;
-        }
-
-        summaryContent.innerHTML = summaryHTML;
-
-        if (isComplete) {
-          summarySection.classList.remove('opacity-50', 'pointer-events-none');
-          customerInfo.classList.remove('hidden');
-          document.getElementById('step2-indicator').classList.add('completed');
-          document.getElementById('step3-indicator').classList.add('active', 'completed');
-          document.getElementById('step3-indicator').style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
-          document.getElementById('step3-indicator').style.color = 'white';
-        } else {
-          summarySection.classList.add('opacity-50', 'pointer-events-none');
-          customerInfo.classList.add('hidden');
-          document.getElementById('step3-indicator').classList.remove('active', 'completed');
-          document.getElementById('step3-indicator').style.background = '#e8d5c4';
-          document.getElementById('step3-indicator').style.color = '#8b5a2b';
+        if (isComplete) { 
+          document.getElementById('order-summary').classList.remove('opacity-50', 'pointer-events-none'); 
+          document.getElementById('step3-indicator').classList.add('active', 'completed'); 
+        } else { 
+          document.getElementById('order-summary').classList.add('opacity-50', 'pointer-events-none'); 
+          document.getElementById('step3-indicator').classList.remove('active', 'completed'); 
         }
       }
     }
+
+    /*function sendToWhatsApp() {
+      const n = document.getElementById('customer-name').value;
+      const c = document.getElementById('customer-city').value;
+      if(!n || !c || selectedFlavors.length < maxFlavors) return alert("Preencha todos os campos!");
+      const finalPrice = calculatePrice();
+      const msg = `Olá! Pedido de Páscoa 🐰\n*Cliente:* ${n}\n*Cidade:* ${c}\n*Produto:* ${selectedEggType}\n*Peso:* ${selectedSize}\n*Sabores:* ${selectedFlavors.map(f => f.name).join(' e ')}\n*TOTAL:* R$ ${finalPrice.toFixed(2)}`;
+      
+      window.open(`https://wa.me/554599900411?text=${encodeURIComponent(msg)}`);
+    }*/
 
     function sendToWhatsApp() {
       const name = document.getElementById('customer-name').value;
@@ -375,13 +441,13 @@
       if (selectedEggType === 'trio' && selectedFlavors.length !== 3) return alert('Trio precisa de 3 sabores');
       if (selectedEggType === 'trufado' && !selectedSize) return alert('Escolha o tamanho');
       if (selectedEggType === 'inteiro' && !selectedSize)return alert('Escolha o tamanho');
-
+      const finalPrice = calculatePrice();
       const orderNumber = 'PAS' + Date.now().toString().slice(-6);
 
       const orderDate= '*Data do pedido:* ' + new Date().toLocaleDateString('pt-BR') + '\n';
       const statusOrden = '*Status:* Aguardando confirmação.';
 
-      const msg = `Olá! Gostaria de fazer um pedido de Páscoa.\n\n*OVO DE PÁSCOA – NOVO PEDIDO*\n\n*Pedido nº:* ${orderNumber}\n*Cliente:* ${name}\n*Cidade:* ${city}\n*Produto:* ${selectedEggType}\n*Peso:* ${selectedSize|| '150g (3 × 50g)'}\n*Sabores:* ${selectedFlavors.join(' e ')}\n\n${orderDate}${statusOrden}
+      const msg = `Olá! Gostaria de fazer um pedido de Páscoa.\n\n*OVO DE PÁSCOA – NOVO PEDIDO*\n\n*Pedido nº:* ${orderNumber}\n*Cliente:* ${name}\n*Cidade:* ${city}\n*Produto:* ${selectedEggType}\n*Peso:* ${selectedSize|| '150g (3 × 50g)'}\n*Sabores:*  ${selectedFlavors.map(f => f.name).join(' e ')}\n\n*TOTAL:* R$ ${finalPrice.toFixed(2)}\n\n${orderDate}${statusOrden}
       `;
       
 
