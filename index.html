@@ -89,14 +89,20 @@
           <div class="relative w-full h-full flex items-center justify-center">
           <div id="carousel-track" class="flex transition-transform duration-500 ease-out w-full h-full">
             <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
+            <img src="./assets/img/mini_ovos.jpeg">
+            </div>
+            <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
             <img src="https://www.mifascinodoceria.com.br/wp-content/uploads/2024/03/MG_3788-scaled.jpg" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
+            <img src="./assets/img/ovos_350.jpeg">
             </div>
             <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
             <img src="https://chocolatesbomsabor.com.br/wp-content/uploads/2022/02/IMG_4192.png" class="w-full h-full object-cover">
             </div>
             <div class="carousel-slide w-full h-full flex-shrink-0 flex items-center justify-center relative">
             <img src="https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2025/03/29/1095338354-ovo-trufado-de-maracuja.jpg" class="w-full h-full object-cover">
-            </div>
+            </div>>
           </div>
           <button onclick="moveCarousel(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full text-white z-10" style="background: rgba(139, 90, 43, 0.7);">❮</button>
           <button onclick="moveCarousel(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full text-white z-10" style="background: rgba(139, 90, 43, 0.7);">❯</button>
@@ -115,7 +121,7 @@
         </div>
         <h3 class="font-display text-lg font-semibold mb-2" style="color: #5c3d2e;">Trio Mini Ovos</h3>
         <p class="text-sm mb-3" style="color: #8b6914;">150g no total (3 unidades de 50g)</p>
-        <p class="text-sm mb-3" style="color: #8b6914;">R$ 45.00</p>
+        <p class="text-sm mb-3" style="color: #8b6914;">R$ 25.00</p>
        </div>
       </div>
       <div class="egg-card cursor-pointer rounded-3xl p-1 gradient-border" data-egg-type="trufado" onclick="selectEggType('trufado')">
@@ -150,7 +156,6 @@
       </div>
      </div>
     </section>
-
     <div id="price-table" class="mb-10 hidden overflow-hidden rounded-2xl border border-[#d4a574]/30 bg-white/50 shadow-sm">
         <table class="w-full text-left text-sm">
             <thead class="bg-[#fef7ed] text-[#5c3d2e]"><tr><th class="p-3 font-semibold">Tamanho (Individual)</th><th class="p-3 font-semibold">Tradicional</th><th class="p-3 font-semibold">Fruta</th><th class="p-3 font-semibold">Especial</th></tr></thead>
@@ -163,11 +168,18 @@
      <p id="flavor-instruction" class="text-sm mb-6 p-4 rounded-2xl" style="background: #fff8ed; color: #8b6914; border: 1px dashed #d4a574;">📌 Selecione os sabores</p>
      <div class="space-y-6">
         <div>
+          <h3 class="font-semibold mb-3 text-[#1e40af]">🍫 CATEGORIA TRADICIONAL</h3>
+          <div class="flex flex-wrap gap-2">
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Brigadeiro" data-category="tradicional" onclick="toggleFlavor(this)">🍫 Brigadeiro</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Beijinho" data-category="tradicional" onclick="toggleFlavor(this)">🥥 Beijinho</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Dois Amores" data-category="tradicional" onclick="toggleFlavor(this)">💕 Dois Amores</button>
+          </div>
+        </div>
+        <div>
           <div class="flex items-center gap-2 mb-4"><span class="text-xl">🍓</span><h3 class="font-semibold" style="color: #e879a9;">CATEGORIA FRUTA</h3></div>
           <div class="flex flex-wrap gap-2">
             <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ninho com Morango" data-category="fruta" onclick="toggleFlavor(this)">🍓 Ninho com Morango</button>
             <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Maracujá Cremoso" data-category="fruta" onclick="toggleFlavor(this)">🍋 Maracujá Cremoso</button>
-            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Cereja" data-category="fruta" onclick="toggleFlavor(this)">🍒 Cereja</button>
           </div>
         </div>
         <div>
@@ -175,17 +187,9 @@
           <div class="flex flex-wrap gap-2">
             <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ouro Branco" data-category="especial" onclick="toggleFlavor(this)">🍬 Ouro Branco</button>
             <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Kinder" data-category="especial" onclick="toggleFlavor(this)">🍫 Kinder</button>
+            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ninho com Nutella" data-category="especial" onclick="toggleFlavor(this)">🥛🍫 Ninho com Nutella</button>
             <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Oreo" data-category="especial" onclick="toggleFlavor(this)">🍪 Oreo</button>
             <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Crocante de Amendoim" data-category="especial" onclick="toggleFlavor(this)">🍯 Crocante de Amendoim </button>
-          </div>
-        </div>
-        <div>
-          <h3 class="font-semibold mb-3 text-[#1e40af]">🍫 CATEGORIA TRADICIONAL</h3>
-          <div class="flex flex-wrap gap-2">
-            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Brigadeiro" data-category="tradicional" onclick="toggleFlavor(this)">🍫 Brigadeiro</button>
-            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Ninho com Nutella" data-category="tradicional" onclick="toggleFlavor(this)">🥛🍫 Ninho com Nutella</button>
-            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Prestígio" data-category="tradicional" onclick="toggleFlavor(this)">🥥🍫 Prestígio</button>
-            <button class="flavor-chip px-4 py-2 rounded-xl bg-white shadow-sm border text-sm" data-flavor="Dois Amores" data-category="tradicional" onclick="toggleFlavor(this)">💕 Dois Amores</button>
           </div>
         </div>
      </div>
@@ -212,7 +216,7 @@
           <div class="flex items-start gap-3">
             <span class="text-xl">🍫</span>
             <p style="color: #5c3d2e;"><span class="font-semibold">Composição dos sabores:</span><br>
-            • Cereja e Oreo são produzidos com <strong>chocolate branco</strong><br>
+            • Oreo é produzidos com <strong>chocolate branco</strong><br>
             • Crocante de Amendoim contém <strong>amendoim na casquinha</strong></p>
           </div>
           <div class="flex items-start gap-3">
@@ -251,16 +255,21 @@
   </div>
 
   <script>
+
     const TABELA_PRECOS = {
-        trio: { "150g": { fixo: 45.00 } },
+        trio: { "150g": { fixo: 25.00 } },
         trufado: {
-            "250g": { tradicional: 55.00, fruta: 65.00, especial: 75.00 },
-            "350g": { tradicional: 85.00, fruta: 95.00, especial: 105.00 }
+            "250g": { tradicional: 55.00, fruta: 55.00, especial: 65.00 },
+            "350g": { tradicional: 75.00, fruta: 75.00, especial: 85.00 }
+        },
+        inteiro_INFO: {
+            "250g + 250g (500g)": { tradicional: 110.00, fruta: 110.00, especial: 130.00 },
+            "350g + 350g (700g)": { tradicional: 150.00, fruta: 150.00, especial: 170.00 }
         },
         inteiro: {
-            "250g + 250g (500g)": { tradicional: 110.00, fruta: 125.00, especial: 140.00 },
-            "350g + 350g (700g)": { tradicional: 150.00, fruta: 165.00, especial: 180.00 }
-        }
+            "250g + 250g (500g)": { tradicional: 55.00, fruta: 55.00, especial: 65.00 },
+            "350g + 350g (700g)": { tradicional: 75.00, fruta: 75.00, especial: 85.00 }
+        },
     };
 
     let selectedEggType = null;
@@ -318,14 +327,68 @@
       updateSummary();
     }
 
-    function renderPriceTable(type) {
+   /* function renderPriceTable(type) {
         const table = document.getElementById('price-table');
         const rows = document.getElementById('price-rows');
         table.classList.remove('hidden');
         rows.innerHTML = "";
+        if (type === 'inteiro') {
+          type = 'inteiro_INFO'
+          const mensagemImportante = `
+            <tr>
+              <td colspan="4" style="padding: 16px;">
+                <div class="p-3 rounded-xl text-sm" style="background: #fef7ed; color: #5c3d2e;">
+                  💰 <strong>Importante:</strong> O valor da lista considera dois sabores da mesma categoria.
+                  Caso selecione categorias diferentes, o sistema somará os valores individualmente
+                  conforme a tabela do <strong>Ovo Trufado Meia Casca</strong>.
+                </div>
+              </td>
+            </tr>
+          `;
+        }   
         Object.entries(TABELA_PRECOS[type]).forEach(([size, values]) => {
             rows.innerHTML += `<tr><td class="p-3 font-bold">${size}</td><td class="p-3">R$ ${values.tradicional.toFixed(2)}</td><td class="p-3">R$ ${values.fruta.toFixed(2)}</td><td class="p-3">R$ ${values.especial.toFixed(2)}</td></tr>`;
         });
+    }*/
+    function renderPriceTable(type) {
+        const table = document.getElementById('price-table');
+        const rows = document.getElementById('price-rows');
+
+        table.classList.remove('hidden');
+        rows.innerHTML = "";
+
+        const isInteiro = type === 'inteiro';
+
+        if (isInteiro) {
+            type = 'inteiro_INFO';
+        }
+
+        // 🔹 Monta a tabela primeiro
+        Object.entries(TABELA_PRECOS[type]).forEach(([size, values]) => {
+            rows.innerHTML += `
+                <tr>
+                    <td class="p-3 font-bold">${size}</td>
+                    <td class="p-3">R$ ${values.tradicional.toFixed(2)}</td>
+                    <td class="p-3">R$ ${values.fruta.toFixed(2)}</td>
+                    <td class="p-3">R$ ${values.especial.toFixed(2)}</td>
+                </tr>
+            `;
+        });
+
+        // 🔹 Depois adiciona a mensagem no final
+        if (isInteiro) {
+            rows.innerHTML += `
+                <tr>
+                    <td colspan="4" style="padding: 16px;">
+                        <div class="p-3 rounded-xl text-sm mt-2" style="background: #fef7ed; color: #5c3d2e;">
+                            💰 <strong>Importante:</strong> O valor da lista considera dois sabores da mesma categoria.
+                            Caso selecione categorias diferentes, o sistema somará os valores individualmente
+                            conforme a tabela do <strong>Ovo Trufado Meia Casca</strong>.
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
     }
 
     document.querySelectorAll('input[name="size"]').forEach(radio => {
@@ -376,12 +439,24 @@ function toggleFlavor(chip) {
         if (selectedEggType === 'trio') return TABELA_PRECOS.trio["150g"].fixo;
 
         let dominantCategory = "tradicional";
-        selectedFlavors.forEach(f => {
+        /*selectedFlavors.forEach(f => {
             if (f.category === "especial") dominantCategory = "especial";
             else if (f.category === "fruta" && dominantCategory !== "especial") dominantCategory = "fruta";
         });
 
-        return TABELA_PRECOS[selectedEggType][selectedSize][dominantCategory];
+        return TABELA_PRECOS[selectedEggType][selectedSize][dominantCategory];*/
+        let total = 0;
+
+        selectedFlavors.forEach(flavor => {
+            const category = flavor.category || "tradicional";
+            const price = TABELA_PRECOS[selectedEggType][selectedSize][category];
+
+            if (price) {
+                total += price;
+            }
+        });
+
+        return total;
     }
 
     function updateSummary() {
